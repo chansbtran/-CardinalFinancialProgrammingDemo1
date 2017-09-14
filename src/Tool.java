@@ -50,7 +50,7 @@ public class Tool {
 	public double getDailyCharge() {
 		return dailyCharge;
 	}
-	public void setDailyCharge(int dailyCharge) {
+	public void setDailyCharge(double dailyCharge) {
 		this.dailyCharge = dailyCharge;
 	}
 
