@@ -1,4 +1,10 @@
 
+/**
+ * @author Chan Tran
+ * @version 09/13/2017
+ * 
+ * This class is used to test and run the program. It will output the values into a display table to view.
+ */
 public class RunProgram {
 
 	Tool rentTool;

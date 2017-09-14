@@ -7,6 +7,12 @@ import java.time.temporal.TemporalAdjusters;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+/**
+ * @author Chan Tran
+ * @version 09/13/2017
+ * 
+ * This class is used to calculate the time and cost of rental given a tool and the rental parameters.
+ */
 public class CalculateRentalTime {
 	
 	private Tool rentalTool;

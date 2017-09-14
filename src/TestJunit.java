@@ -1,8 +1,16 @@
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
+
+/**
+ * @author Chan Tran
+ * @version 09/13/2017
+ * 
+ * This class is used for Junit testing. Testing out each class with expected values.
+ */
 public class TestJunit {
 	
+	// Testing functionality and methods of Tool
    @Test
    public void testTool()
    {
@@ -18,7 +26,8 @@ public class TestJunit {
 	   toolTest.setToolType("TestType");
 	   assertEquals("TestType", toolTest.getToolType());
    }
-   
+
+	// Testing functionality and methods of Rental Parameters
    @Test
    public void testRentalParameters()
    {
@@ -36,6 +45,7 @@ public class TestJunit {
 	   assertEquals(99, rental.getRentDays());
    }
    
+	// Testing functionality and methods of RentalCalculations under 6 different test cases.
    @Test
    public void testRentalCalculations()
    {
