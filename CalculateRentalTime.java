@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * @author Chan Tran
- * @version 09/18/2017
+ * @version 09/22/2017
  * 
  * This class is used to calculate the time and cost of rental given a tool and the rental parameters.
  */
@@ -19,7 +19,6 @@ public class CalculateRentalTime {
 	private int actualRented;
 	private BigDecimal preDiscount;
 	private BigDecimal discountAmount;
-	private String discountAmountStr;
 	private BigDecimal finalCost;
 	
 	private static DateTimeFormatter mdyyFormat = DateTimeFormatter.ofPattern("M/d/yy");
@@ -42,7 +41,7 @@ public class CalculateRentalTime {
 		{
 			returnDate = calculateReturnDate(rentalParam.getRentDate(), rentalParam.getRentDays());
 			actualRented = actualChargeDays(rentalParam.getRentDate(), rentalParam.getRentDays());
-			preDiscount = beforeDiscount(rentalTool, actualRented);
+			preDiscount = beforeDiscount(rentalTool.getDailyCharge(), actualRented);
 			discountAmount = calcDiscountAmount(preDiscount, rentalParam.getDiscount());
 			finalCost = finalCost(preDiscount, discountAmount);
 		}
@@ -110,7 +109,7 @@ public class CalculateRentalTime {
 		int actualRentDays = 0;
 		for (int i = 1; i <= rentDays; i++)
 		{
-			LocalDate newDay = localD.plusDays(i);
+			LocalDate incrementDays = localD.plusDays(i);
 			
 			if (rentalTool.getToolType().equals("Ladder"))
 			{
@@ -118,18 +117,18 @@ public class CalculateRentalTime {
 			}
 			else if (rentalTool.getToolType().equals("Chainsaw"))
 			{
-				if (!isWeekend(newDay))
+				if (!isWeekend(incrementDays))
 					actualRentDays++;
 			}
 			else if (rentalTool.getToolType().equals("Jackhammer"))
 			{
-				if (isHoliday(newDay))
+				if (isHoliday(incrementDays))
 				{
-					if (isJuly4(newDay))
+					if (isJuly4(incrementDays))
 					{
-						if (isWeekend(newDay))
+						if (isWeekend(incrementDays))
 						{
-							if (newDay.getDayOfWeek() == DayOfWeek.SATURDAY)
+							if (incrementDays.getDayOfWeek() == DayOfWeek.SATURDAY)
 							{
 								if ((i - 1) > 0)
 									actualRentDays--;
@@ -141,25 +140,26 @@ public class CalculateRentalTime {
 							}
 						}
 					}
-					else if (isLaborDay(newDay))
+					else if (isLaborDay(incrementDays))
 					{
 						// Do nothing. No charge for jackhammer on holidays.
+						// This loop can be removed but is kept as a placeholder.
 					}
 				}
 				else
 				{
-					if (!isWeekend(newDay))
-						actualRentDays++;	
+					if (!isWeekend(incrementDays))
+						actualRentDays++;
 				}
 			}
 		}
 		return actualRentDays;
 	}
 	
-	public BigDecimal beforeDiscount(Tool rentalTool, int actualRented)
+	public BigDecimal beforeDiscount(BigDecimal dailyCharge, int actualRented)
 	{
 		BigDecimal actualDaysRented = new BigDecimal(actualRented);
-		BigDecimal beforeDiscountAmt = rentalTool.getDailyCharge().multiply(actualDaysRented);
+		BigDecimal beforeDiscountAmt = dailyCharge.multiply(actualDaysRented);
 		return beforeDiscountAmt.setScale(2, roundUp);
 	}
 	public BigDecimal calcDiscountAmount(BigDecimal preDisc, int discount)
@@ -208,13 +208,6 @@ public class CalculateRentalTime {
 	}
 	public void setReturnDate(String returnDate) {
 		this.returnDate = returnDate;
-	}
-
-	public String getDiscountAmountStr() {
-		return discountAmountStr;
-	}
-	public void setDiscountAmountStr(String discountAmountStr) {
-		this.discountAmountStr = discountAmountStr;
 	}
 	
 }

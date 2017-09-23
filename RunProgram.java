@@ -1,11 +1,9 @@
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAdjusters;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 
 /**
  * @author Chan Tran
- * @version 09/18/2017
+ * @version 09/22/2017
  * 
  * This class is used to test and run the program. It will output the values into a display table to view.
  */
@@ -17,83 +15,67 @@ public class RunProgram {
 	{
 		this.rentTool = new Tool();
 	}
-	
-	public RunProgram(String tool, String brand, String toolCode, double dailyCharge)
+
+	public void displayResults(ArrayList<String> toolCodes, ArrayList<String> checkoutDate, ArrayList<Integer> rentalDays, ArrayList<Integer> discPercentBefore,
+			ArrayList<String> dueDate, ArrayList<BigDecimal> dailyCharges, ArrayList<Integer> chargeDays, ArrayList<BigDecimal> preDiscount,
+			ArrayList<Integer> discPercentAfter, ArrayList<BigDecimal> discountAmt, ArrayList<BigDecimal> finalCharge, ArrayList<String> testNum)
 	{
-		this.rentTool = new Tool(tool, brand, toolCode, dailyCharge);
-	}
-	
-	public void toString(Tool tool, RentalParameters rentalParam, CalculateRentalTime calcRent)
-	{
-		System.out.println("\t\t\t\t Test 1");
+		System.out.printf("%-30s%s%n", "", toStringArray(testNum, "", false));
 		System.out.println("Checkout terms");
-		System.out.println("Tool code\t\t\t" + tool.getToolCode());
-		System.out.println("Checkout date\t\t\t" + rentalParam.getRentDate());
-		System.out.println("Rental days\t\t\t" + rentalParam.getRentDays());
-		System.out.println("Discount\t\t\t" + rentalParam.getDiscount() + "%");
-		System.out.println("Rental Agreement expected values");
-		System.out.println("Due date\t\t\t" + calcRent.getReturnDate());
-		System.out.println("Daily charge\t\t\t" + "$" + tool.getDailyCharge());
-		System.out.println("Charge days\t\t\t" + calcRent.getActualRented());
-		System.out.println("Pre-discount charge\t\t" + calcRent.getPreDiscount().toString());
-		System.out.println("Discount %\t\t\t" + rentalParam.getDiscount() + "%");
-		System.out.println("Discount amount\t\t\t" + "$" + calcRent.getDiscountAmount());
-		System.out.println("Final charge\t\t\t" + "$" + calcRent.getFinalCost());
-	}
-	
-	public void toString(Tool tool, RentalParameters rentalParam, CalculateRentalTime calcRent, int testNum)
-	{
-		System.out.println("\t\t\t\t Test " + testNum);
-		System.out.println("Checkout terms");
-		System.out.println("Tool code\t\t\t" + tool.getToolCode());
-		System.out.println("Checkout date\t\t\t" + rentalParam.getRentDate());
-		System.out.println("Rental days\t\t\t" + rentalParam.getRentDays());
-		System.out.println("Discount\t\t\t" + rentalParam.getDiscount() + "%");
-		System.out.println("Rental Agreement expected values");
-		System.out.println("Due date\t\t\t" + calcRent.getReturnDate());
+		System.out.printf("%-30s%s%n", "Tool code", toStringArray(toolCodes, "", false));
+		System.out.printf("%-30s%s%n", "Checkout date", toStringArray(checkoutDate, "", false));
+		System.out.printf("%-30s%s%n", "Rental days", toStringArray(rentalDays, "", false));
+		System.out.printf("%-30s%s%n", "Discount", toStringArray(discPercentBefore, "%", false));
 		
-		if (calcRent.getReturnDate().equals("Exception"))
-		{
-			System.out.println("Daily charge\t\t\t");
-			System.out.println("Charge days\t\t\t");
-			System.out.println("Pre-discount charge\t\t");
-			System.out.println("Discount %\t\t\t");
-			System.out.println("Discount amount\t\t\t");
-			System.out.println("Final charge\t\t\t");
-		}
-		else
-		{
-			System.out.println("Daily charge\t\t\t" + "$" + tool.getDailyCharge());
-			System.out.println("Charge days\t\t\t" + calcRent.getActualRented());
-			System.out.println("Pre-discount charge\t\t" + "$" + calcRent.getPreDiscount());
-			System.out.println("Discount %\t\t\t" + rentalParam.getDiscount() + "%");
-			System.out.println("Discount amount\t\t\t" + "$" + calcRent.getDiscountAmount());
-			System.out.println("Final charge\t\t\t" + "$" + calcRent.getFinalCost());
-		}
+		System.out.println("Rental Agreement expected values");
+		
+		System.out.printf("%-30s%s%n", "Due date", toStringArray(dueDate, "", false));
+		System.out.printf("%-30s%s%n", "Daily charge", toStringArray(dailyCharges, "$", true));
+		System.out.printf("%-30s%s%n", "Charge days", toStringArray(chargeDays, "", false));
+		System.out.printf("%-30s%s%n", "Pre-discount charge", toStringArray(preDiscount, "$", true));
+		System.out.printf("%-30s%s%n", "Discount %", toStringArray(discPercentAfter, "%", false));
+		System.out.printf("%-30s%s%n", "Discount amount", toStringArray(discountAmt, "$", true));
+		System.out.printf("%-30s%s%n", "Final charge", toStringArray(finalCharge, "$", true));
 	}
 	
-	public void toStringException(Tool tool, RentalParameters rentalParam, CalculateRentalTime calcRent, int testNum)
+	private String toStringArray(ArrayList<?> printList, String indicator, boolean before)
 	{
-		System.out.println("\t\t\t\t Test " + testNum);
-		System.out.println("Checkout terms");
-		System.out.println("Tool code\t\t\t" + tool.getToolCode());
-		System.out.println("Checkout date\t\t\t" + rentalParam.getRentDate());
-		System.out.println("Rental days\t\t\t" + rentalParam.getRentDays());
-		System.out.println("Discount\t\t\t" + rentalParam.getDiscount() + "%");
-		System.out.println("Rental Agreement expected values");
-		System.out.println("Due date\t\t\t" + "Exception");
-		
-		System.out.println("Daily charge\t\t\t");
-		System.out.println("Charge days\t\t\t");
-		System.out.println("Pre-discount charge\t\t");
-		System.out.println("Discount %\t\t\t");
-		System.out.println("Discount amount\t\t\t");
-		System.out.println("Final charge\t\t\t");
+		String returnStr = "";
+		for (int i = 0; i < printList.size(); i++)
+		{
+			if (before)
+			{
+				if (printList.get(i) == null)
+					returnStr += String.format("%-10s", "");
+				else
+					returnStr += String.format("%-10s", indicator + printList.get(i));	
+			}
+			else
+			{
+				if (printList.get(i) == null)
+					returnStr += String.format("%-10s", "");
+				else
+					returnStr += String.format("%-10s", printList.get(i) + indicator);	
+			}
+		}
+		return returnStr;
 	}
 	
 	public static void main(String args[])
 	{
 		RunProgram pro1 = new RunProgram();
+		ArrayList<String> toolCodes = new ArrayList<>();
+		ArrayList<String> checkoutDate = new ArrayList<>();
+		ArrayList<Integer> rentalDays = new ArrayList<>();
+		ArrayList<Integer> discPercentBefore = new ArrayList<>();
+		ArrayList<String> dueDate = new ArrayList<>();
+		ArrayList<BigDecimal> dailyCharges = new ArrayList<>();
+		ArrayList<Integer> chargeDays = new ArrayList<>();
+		ArrayList<BigDecimal> preDiscount = new ArrayList<>();
+		ArrayList<Integer> discPercentAfter = new ArrayList<>();
+		ArrayList<BigDecimal> discountAmt = new ArrayList<>();
+		ArrayList<BigDecimal> finalCharge = new ArrayList<>();
+		ArrayList<String> testNum = new ArrayList<>();
 		
 		for (int i = 1; i <= 6; i++)
 		{
@@ -160,34 +142,40 @@ public class RunProgram {
 			default:
 				break;
 			}
+			
 			Tool tool = new Tool(toolType, toolBrand, toolCode, dailyCharge);
 			RentalParameters rental = new RentalParameters(rentDate, rentDays, discount);
 			CalculateRentalTime calc = new CalculateRentalTime(tool, rental);
+			
 			try
 			{
 				calc.runCalculations();
-				pro1.toString(tool, rental, calc, i);
+				
+				dueDate.add(calc.getReturnDate());
+				dailyCharges.add(tool.getDailyCharge());
+				chargeDays.add(calc.getActualRented());
+				preDiscount.add(calc.getPreDiscount());
+				discPercentAfter.add(rental.getDiscount());
+				discountAmt.add(calc.getDiscountAmount());
+				finalCharge.add(calc.getFinalCost());
 			}
 			catch (Exception e)
 			{
-				//System.out.println(e);
-				pro1.toStringException(tool, rental, calc, i);
+				dueDate.add("Exception");
+				dailyCharges.add(null);
+				chargeDays.add(null);
+				preDiscount.add(null);
+				discPercentAfter.add(null);
+				discountAmt.add(null);
+				finalCharge.add(null);
 			}
-			System.out.println("--------------------------------------------------------");
+			
+			toolCodes.add(tool.getToolCode());
+			checkoutDate.add(rental.getRentDate());
+			rentalDays.add(rental.getRentDays());
+			discPercentBefore.add(rental.getDiscount());
+			testNum.add("Test " + i);
 		}
+		pro1.displayResults(toolCodes, checkoutDate, rentalDays, discPercentBefore, dueDate, dailyCharges, chargeDays, preDiscount, discPercentAfter, discountAmt, finalCharge, testNum);
 	}
-
-	/*
-	public static void main(String args[])
-	{
-		//DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-		DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("M/d/yyyy");
-		//LocalDate given = newFormat.par;
-		LocalDate given = LocalDate.parse("9/25/2015", newFormat);
-		LocalDate firstMonday = given.with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY));
-		System.out.println(given);
-		System.out.println(firstMonday);
-		System.out.println(given.plusDays(100));
-	}
-	*/
 }

@@ -68,6 +68,12 @@ public class TestJunit {
 		try
 		{
 			calc.runCalculations();
+			
+			assertEquals(null, calc.getReturnDate());
+			assertEquals(0, calc.getActualRented());
+			assertEquals(null, calc.getPreDiscount());
+			assertEquals(null, calc.getDiscountAmount());
+			assertEquals(null, calc.getFinalCost());
 		}
 		catch (Exception e)
 		{
@@ -102,17 +108,21 @@ public class TestJunit {
 			try
 			{
 				calc.runCalculations();
+				
+				assertEquals("9/8/15", calc.getReturnDate());
+				assertEquals(5, calc.getActualRented());
+				assertEquals(new BigDecimal(9.95).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
+				assertEquals(new BigDecimal(1.00).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
+				assertEquals(String.valueOf(8.95), String.valueOf(calc.getFinalCost()));
 			}
 			catch (Exception e)
 			{
-				System.out.println(e);
+				assertEquals(null, calc.getReturnDate());
+				assertEquals(0, calc.getActualRented());
+				assertEquals(null, calc.getPreDiscount());
+				assertEquals(null, calc.getDiscountAmount());
+				assertEquals(null, calc.getFinalCost());
 			}
-			
-			assertEquals("9/8/15", calc.getReturnDate());
-			assertEquals(5, calc.getActualRented());
-			assertEquals(new BigDecimal(9.95).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
-			assertEquals(new BigDecimal(1.00).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
-			assertEquals(String.valueOf(8.95), String.valueOf(calc.getFinalCost()));
 		}
 	}
    
@@ -139,17 +149,21 @@ public class TestJunit {
 			try
 			{
 				calc.runCalculations();
+				
+				assertEquals("7/7/15", calc.getReturnDate());
+				assertEquals(3, calc.getActualRented());
+				assertEquals(new BigDecimal(4.47).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
+				assertEquals(new BigDecimal(1.12).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
+				assertEquals(new BigDecimal(3.35).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
 			}
 			catch (Exception e)
 			{
-				System.out.println(e);
+				assertEquals(null, calc.getReturnDate());
+				assertEquals(0, calc.getActualRented());
+				assertEquals(null, calc.getPreDiscount());
+				assertEquals(null, calc.getDiscountAmount());
+				assertEquals(null, calc.getFinalCost());
 			}
-			
-			assertEquals("7/7/15", calc.getReturnDate());
-			assertEquals(3, calc.getActualRented());
-			assertEquals(new BigDecimal(4.47).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
-			assertEquals(new BigDecimal(1.12).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
-			assertEquals(new BigDecimal(3.35).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
 		}
 	}
    
@@ -176,17 +190,21 @@ public class TestJunit {
 			try
 			{
 				calc.runCalculations();
+				
+				assertEquals("9/9/15", calc.getReturnDate());
+				assertEquals(3, calc.getActualRented());
+				assertEquals(new BigDecimal(8.97).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
+				assertEquals(new BigDecimal(0.00).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
+				assertEquals(new BigDecimal(8.97).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
 			}
 			catch (Exception e)
 			{
-				System.out.println(e);
+				assertEquals(null, calc.getReturnDate());
+				assertEquals(0, calc.getActualRented());
+				assertEquals(null, calc.getPreDiscount());
+				assertEquals(null, calc.getDiscountAmount());
+				assertEquals(null, calc.getFinalCost());
 			}
-			
-			assertEquals("9/9/15", calc.getReturnDate());
-			assertEquals(3, calc.getActualRented());
-			assertEquals(new BigDecimal(8.97).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
-			assertEquals(new BigDecimal(0.00).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
-			assertEquals(new BigDecimal(8.97).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
 		}
 	}
    
@@ -213,17 +231,21 @@ public class TestJunit {
 			try
 			{
 				calc.runCalculations();
+				
+				assertEquals("7/11/15", calc.getReturnDate());
+				assertEquals(5, calc.getActualRented());
+				assertEquals(new BigDecimal(14.95).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
+				assertEquals(new BigDecimal(0.00).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
+				assertEquals(new BigDecimal(14.95).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
 			}
 			catch (Exception e)
 			{
-				System.out.println(e);
+				assertEquals(null, calc.getReturnDate());
+				assertEquals(0, calc.getActualRented());
+				assertEquals(null, calc.getPreDiscount());
+				assertEquals(null, calc.getDiscountAmount());
+				assertEquals(null, calc.getFinalCost());
 			}
-			
-			assertEquals("7/11/15", calc.getReturnDate());
-			assertEquals(5, calc.getActualRented());
-			assertEquals(new BigDecimal(14.95).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
-			assertEquals(new BigDecimal(0.00).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
-			assertEquals(new BigDecimal(14.95).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
 		}
 	}
    
@@ -250,17 +272,20 @@ public class TestJunit {
 			try
 			{
 				calc.runCalculations();
+				assertEquals("7/6/20", calc.getReturnDate());
+				assertEquals(1, calc.getActualRented());
+				assertEquals(new BigDecimal(2.99).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
+				assertEquals(new BigDecimal(1.50).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
+				assertEquals(new BigDecimal(1.49).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
 			}
 			catch (Exception e)
 			{
-				System.out.println(e);
+				assertEquals(null, calc.getReturnDate());
+				assertEquals(0, calc.getActualRented());
+				assertEquals(null, calc.getPreDiscount());
+				assertEquals(null, calc.getDiscountAmount());
+				assertEquals(null, calc.getFinalCost());
 			}
-			
-			assertEquals("7/6/20", calc.getReturnDate());
-			assertEquals(1, calc.getActualRented());
-			assertEquals(new BigDecimal(2.99).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
-			assertEquals(new BigDecimal(1.50).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
-			assertEquals(new BigDecimal(1.49).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
 		}
 	}
    
@@ -286,18 +311,17 @@ public class TestJunit {
 		try
 		{
 			calc.runCalculations();
+			
+			assertEquals("10/5/15", calc.getReturnDate());
 		}
 		catch (Exception e)
 		{
-			System.out.println(e);
+			assertEquals(null, calc.getReturnDate());
+			assertEquals(0, calc.getActualRented());
+			assertEquals(null, calc.getPreDiscount());
+			assertEquals(null, calc.getDiscountAmount());
+			assertEquals(null, calc.getFinalCost());
 		}
-	
-		assertEquals("10/5/15", calc.getReturnDate());
-		//assertEquals(5, calc.getActualRented());
-		// Testing with Strings due to deprecated assertEquals(double, double)
-		//assertEquals(String.valueOf(9.95), String.valueOf(calc.getPreDiscount()));
-		//assertEquals(String.valueOf(1.0), String.valueOf(calc.getDiscountAmount()));
-		//assertEquals(String.valueOf(8.95), String.valueOf(calc.getFinalCost()));
    }
    
    @Test
@@ -322,19 +346,21 @@ public class TestJunit {
 		try
 		{
 			calc.runCalculations();
+			
+			assertEquals("6/20/15", calc.getReturnDate());
+			assertEquals(35, calc.getActualRented());
+			assertEquals(new BigDecimal(104.65).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
+			assertEquals(new BigDecimal(10.47).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
+			assertEquals(new BigDecimal(94.18).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
 		}
 		catch (Exception e)
 		{
-			System.out.println(e);
+			assertEquals(null, calc.getReturnDate());
+			assertEquals(0, calc.getActualRented());
+			assertEquals(null, calc.getPreDiscount());
+			assertEquals(null, calc.getDiscountAmount());
+			assertEquals(null, calc.getFinalCost());
 		}
-		
-	
-		assertEquals("6/20/15", calc.getReturnDate());
-		assertEquals(35, calc.getActualRented());
-		// Testing with Strings due to deprecated assertEquals(double, double)
-		assertEquals(new BigDecimal(104.65).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
-		assertEquals(new BigDecimal(10.47).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
-		assertEquals(new BigDecimal(94.18).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
    }
    @Test
    public void RentalTestExtra2()
@@ -358,18 +384,21 @@ public class TestJunit {
 		try
 		{
 			calc.runCalculations();
+			
+			assertEquals("7/19/15", calc.getReturnDate());
+			assertEquals(13, calc.getActualRented());
+			assertEquals(new BigDecimal(38.87).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
+			assertEquals(new BigDecimal(3.89).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
+			assertEquals(new BigDecimal(34.98).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
 		}
 		catch (Exception e)
 		{
-			System.out.println(e);
+			assertEquals(null, calc.getReturnDate());
+			assertEquals(0, calc.getActualRented());
+			assertEquals(null, calc.getPreDiscount());
+			assertEquals(null, calc.getDiscountAmount());
+			assertEquals(null, calc.getFinalCost());
 		}
-	
-		assertEquals("7/19/15", calc.getReturnDate());
-		assertEquals(13, calc.getActualRented());
-		// Testing with Strings due to deprecated assertEquals(double, double)
-		assertEquals(new BigDecimal(38.87).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
-		assertEquals(new BigDecimal(3.89).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
-		assertEquals(new BigDecimal(34.98).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
    }
    @Test
    public void RentalTestExtra3()
@@ -393,18 +422,21 @@ public class TestJunit {
 		try
 		{
 			calc.runCalculations();
+			
+			assertEquals("7/19/15", calc.getReturnDate());
+			assertEquals(20, calc.getActualRented());
+			assertEquals(new BigDecimal(39.80).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
+			assertEquals(new BigDecimal(3.98).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
+			assertEquals(new BigDecimal(35.82).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
 		}
 		catch (Exception e)
 		{
-			System.out.println(e);
+			assertEquals(null, calc.getReturnDate());
+			assertEquals(0, calc.getActualRented());
+			assertEquals(null, calc.getPreDiscount());
+			assertEquals(null, calc.getDiscountAmount());
+			assertEquals(null, calc.getFinalCost());
 		}
-	
-		assertEquals("7/19/15", calc.getReturnDate());
-		assertEquals(20, calc.getActualRented());
-		// Testing with Strings due to deprecated assertEquals(double, double)
-		assertEquals(new BigDecimal(39.80).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
-		assertEquals(new BigDecimal(3.98).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
-		assertEquals(new BigDecimal(35.82).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
    }
    @Test
    public void RentalTestExtra4()
@@ -428,20 +460,22 @@ public class TestJunit {
 		try
 		{
 			calc.runCalculations();
+			
+			assertEquals("7/19/15", calc.getReturnDate());
+			assertEquals(14, calc.getActualRented());
+			assertEquals(new BigDecimal(20.86).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
+			assertEquals(new BigDecimal(2.09).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
+			assertEquals(new BigDecimal(18.77).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
 		}
 		catch (Exception e)
 		{
-			System.out.println(e);
+			assertEquals(null, calc.getReturnDate());
+			assertEquals(0, calc.getActualRented());
+			assertEquals(null, calc.getPreDiscount());
+			assertEquals(null, calc.getDiscountAmount());
+			assertEquals(null, calc.getFinalCost());
 		}
-	
-		assertEquals("7/19/15", calc.getReturnDate());
-		assertEquals(14, calc.getActualRented());
-		// Testing with Strings due to deprecated assertEquals(double, double)
-		assertEquals(new BigDecimal(20.86).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getPreDiscount());
-		assertEquals(new BigDecimal(2.09).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getDiscountAmount());
-		assertEquals(new BigDecimal(18.77).setScale(2, BigDecimal.ROUND_HALF_UP), calc.getFinalCost());
    }
-   
    @Test
    public void RentalTestExtra5()
    {
@@ -464,6 +498,77 @@ public class TestJunit {
 		try
 		{
 			calc.runCalculations();
+		}
+		catch (Exception e)
+		{
+			assertEquals(null, calc.getReturnDate());
+			assertEquals(0, calc.getActualRented());
+			assertEquals(null, calc.getPreDiscount());
+			assertEquals(null, calc.getDiscountAmount());
+			assertEquals(null, calc.getFinalCost());
+		}
+	}
+   @Test
+   public void RentalTestExtra6()
+   {
+	   //change this
+		String toolType = "", toolBrand = "", toolCode = "", rentDate = "";
+		double dailyCharge = 0.00;
+		int rentDays = 0, discount = 0;
+		
+		toolType = "Jackhammer";
+		toolBrand = "Rigid";
+		toolCode = "JAKR";
+		rentDate = "7/1/15";
+		dailyCharge = 2.99;
+		rentDays = 0;
+		discount = 1;
+		
+		Tool tool = new Tool(toolType, toolBrand, toolCode, dailyCharge);
+		RentalParameters rental = new RentalParameters(rentDate, rentDays, discount);
+		CalculateRentalTime calc = new CalculateRentalTime(tool, rental);
+		try
+		{
+			calc.runCalculations();
+			assertEquals("7/5/15", calc.getReturnDate());
+			assertEquals(1, calc.getActualRented());
+		}
+		catch (Exception e)
+		{
+			assertEquals(null, calc.getReturnDate());
+			assertEquals(0, calc.getActualRented());
+			assertEquals(null, calc.getPreDiscount());
+			assertEquals(null, calc.getDiscountAmount());
+			assertEquals(null, calc.getFinalCost());
+		}
+	}
+
+   @Test
+   public void RentalTestExtra7()
+   {
+	   //change this
+		String toolType = "", toolBrand = "", toolCode = "", rentDate = "";
+		double dailyCharge = 0.00;
+		int rentDays = 0, discount = 0;
+		
+		toolType = "Jackhammer";
+		toolBrand = "Rigid";
+		toolCode = "JAKR";
+		rentDate = "7/1/15";
+		dailyCharge = 2.99;
+		rentDays = 365;
+		discount = 1;
+		
+		Tool tool = new Tool(toolType, toolBrand, toolCode, dailyCharge);
+		RentalParameters rental = new RentalParameters(rentDate, rentDays, discount);
+		CalculateRentalTime calc = new CalculateRentalTime(tool, rental);
+		try
+		{
+			calc.runCalculations();
+			assertEquals("6/30/16", calc.getReturnDate());
+			assertEquals(259, calc.getActualRented());
+			// rent days - (52 * weekends) - holidays
+			// 365 - (52 * 2) - 2 = 259
 		}
 		catch (Exception e)
 		{
