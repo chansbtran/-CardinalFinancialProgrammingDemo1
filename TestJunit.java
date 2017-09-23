@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 /**
  * @author Chan Tran
- * @version 09/18/2017
+ * @version 09/22/2017
  * 
  * This class is used for Junit testing. Testing out each class with expected values.
  */
