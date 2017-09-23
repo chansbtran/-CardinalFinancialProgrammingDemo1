@@ -49,7 +49,6 @@ public class TestJunit {
    @Test
    public void RentalCalc1()
    {
-	   //change this
 		String toolType = "", toolBrand = "", toolCode = "", rentDate = "";
 		double dailyCharge = 0.00;
 		int rentDays = 0, discount = 0;
@@ -324,6 +323,7 @@ public class TestJunit {
 		}
    }
    
+   // Extra testing
    @Test
    public void RentalTestExtra1()
    {
